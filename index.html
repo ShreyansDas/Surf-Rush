@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#051b25">
+<title>Surf Rush</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="c" tabindex="0" aria-label="Surf Rush game view"></canvas>
+<div id="loading">SURF RUSH</div>
+
+<div id="menu" hidden>
+  <div class="row top">
+    <div class="row">
+      <div class="pill"><span class="coin"></span><span class="num" id="mCoins">0</span></div>
+      <div class="pill"><span class="lab">BEST</span><span class="num" id="mBest">0</span></div>
+    </div>
+    <button class="btn" id="setBtn" aria-label="Settings">Settings</button>
+  </div>
+  <div class="titleblock">
+    <h1 class="title">SURF<br>RUSH</h1>
+    <div class="sub">ENDLESS WAVE RIDER</div>
+  </div>
+  <div class="bottom">
+    <div class="row" style="justify-content:center">
+      <div class="seg" role="group" aria-label="Mode">
+        <button id="modeSingle" aria-pressed="true">Single map</button>
+        <button id="modeAdv" aria-pressed="false">Adventure</button>
+      </div>
+      <button class="mapchip" id="mapChip"><span class="thumb" id="chipThumb"></span><span><b id="chipName">Tropical Paradise</b><small id="chipSub">Easy · Change map</small></span></button>
+    </div>
+    <button class="btn" id="playBtn">PLAY</button>
+    <div class="hint" id="ctrlHint"></div>
+    <div class="nav">
+      <button class="btn" data-panel="maps">Maps</button>
+      <button class="btn" data-panel="surfers">Surfers</button>
+      <button class="btn" data-panel="boards">Boards</button>
+      <button class="btn" data-panel="shop">Shop</button>
+      <button class="btn" data-panel="missions">Missions<span class="badge" id="misBadge" hidden></span></button>
+      <button class="btn" data-panel="daily">Daily<span class="badge" id="dayBadge" hidden>1</span></button>
+      <button class="btn" data-panel="settings">Settings</button>
+    </div>
+  </div>
+</div>
+
+<div id="hud" hidden>
+  <div class="hudtop">
+    <div class="scorebox"><div class="s num" id="hScore">0</div><div class="b num" id="hBest">BEST 0</div></div>
+    <div class="right">
+      <div class="row" style="display:flex;gap:8px;align-items:center">
+        <div class="hudpill"><span class="coin"></span><span class="num" id="hCoins">0</span></div>
+        <button class="btn" id="pauseBtn" aria-label="Pause"><i></i></button>
+      </div>
+      <div class="hudpill"><span class="num" id="hDist">0</span><span class="m">M</span></div>
+    </div>
+  </div>
+  <div id="combo"><div class="x num" id="hMult">x1</div><div class="t num" id="hCombo">COMBO 0</div></div>
+  <div id="pus"></div>
+  <div id="banner"><div class="h" id="banH"></div><div class="u" id="banU"></div></div>
+  <div id="tut"><div class="h">SWIPE TO SURF!</div><div class="u" id="tutU"></div><div class="arrows"><span>&larr;</span><span>&uarr;</span><span>&darr;</span><span>&rarr;</span></div></div>
+  <div id="fx"></div>
+</div>
+<button class="btn ghost" id="skip" hidden>Skip intro</button>
+
+<div class="overlay" id="pause" hidden>
+  <div class="sheet"><h2>PAUSED</h2>
+    <div class="cmp num" id="pInfo"></div>
+    <div class="stack">
+      <button class="btn hot" id="pResume">Resume</button>
+      <button class="btn" id="pRestart">Restart</button>
+      <button class="btn" id="pSettings">Settings</button>
+      <button class="btn" id="pMenu">Main menu</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="over" hidden>
+  <div class="sheet">
+    <h2>WIPEOUT!</h2>
+    <div class="cmp" id="oMap"></div>
+    <div class="big num" id="oScore">0</div>
+    <div id="oPB"></div>
+    <div class="cmp num" id="oCmp"></div>
+    <div class="stats">
+      <div class="stat"><b class="num" id="oDist">0</b><span>Meters</span></div>
+      <div class="stat"><b class="num" id="oCoins">0</b><span>Coins</span></div>
+      <div class="stat"><b class="num" id="oTricks">0</b><span>Tricks</span></div>
+    </div>
+    <div class="done" id="oDone"></div>
+    <div class="duo"><button class="btn" id="oMenu">Main menu</button><button class="btn hot" id="oRestart">Restart</button></div>
+  </div>
+</div>
+
+<div class="overlay reveal" id="reveal" hidden>
+  <div class="sheet"><h2>NEW MAP!</h2><div class="cmp">Unlocked</div>
+    <div class="rcard" id="rCard"><div class="nm" id="rName"></div></div>
+    <div class="cmp" id="rText"></div>
+    <div class="duo"><button class="btn" id="rLater">Later</button><button class="btn hot" id="rRide">Ride it</button></div>
+  </div>
+</div>
+
+<div id="panel" hidden>
+  <div class="phead"><h3 id="pTitle">Maps</h3><button class="btn xbtn" id="pClose" aria-label="Close">&times;</button></div>
+  <div class="pbody" id="pBody"></div>
+</div>
+<div id="toasts"></div>
+<script src="three.min.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
